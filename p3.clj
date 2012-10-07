@@ -8,10 +8,19 @@
   (zero? (mod m n)))
 
 (defn factors-of [n]
-  (filter (partial factor-of? n) (range 2 (quot n 2))))
+  (loop [factors (set [])
+         min 2
+         max (dec n)]
+    (if (<= min max)
+      (if (factor-of? n min)
+        (let [factor min
+              complement (quot n min)]
+          (recur (conj factors factor complement) (inc factor) complement))
+        (recur factors (inc min) max))
+      factors)))
 
 (defn prime? [n]
-  (empty? (factors-of n)))
+  (empty? (factors-of n) n 1))
 
 (defn prime-factors-of [n]
   (filter prime? (factors-of n)))
