@@ -20,9 +20,11 @@
       factors)))
 
 (defn prime? [n]
-  (empty? (factors-of n) n 1))
+  (empty? (factors-of n)))
 
 (defn prime-factors-of [n]
   (filter prime? (factors-of n)))
 
-(apply max (prime-factors-of 600851475143))
+(println
+ (apply max (prime-factors-of 600851475143)))
+
