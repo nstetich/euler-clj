@@ -8,14 +8,16 @@
   (zero? (mod m n)))
 
 (defn factors-of [n]
-  (loop [factors (set [])
+  (loop [factors #{}
          min 2
          max (dec n)]
     (if (<= min max)
       (if (factor-of? n min)
         (let [factor min
               complement (quot n min)]
-          (recur (conj factors factor complement) (inc factor) complement))
+          (recur (conj factors factor complement)
+                 (inc factor)
+                 (dec complement)))
         (recur factors (inc min) max))
       factors)))
 
