@@ -8,7 +8,9 @@
                 (range 2 (inc (bigint (java.lang.Math/sqrt n)))))))
 
 (defn prime? [n]
-  (nil? (smallest-factor-of n)))
+  (case n
+    1 false
+    (nil? (smallest-factor-of n))))
 
 (def naturals (iterate inc 1))
 
@@ -20,6 +22,7 @@
 ;; "Elapsed time: 81167.336 msecs"
 ;; 104743
 
-;; user=> (time (nth primes 10000))
-;; "Elapsed time: 1308.829 msecs"
-;; 104729
+;; user=> (time (nth (filter prime? naturals) 10000))
+;; "Elapsed time: 1323.544 msecs"
+;; 104743
+
