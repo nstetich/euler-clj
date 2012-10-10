@@ -24,7 +24,7 @@
       (map counts)
       flatten))
 
-(defn gcm [& ns]
+(defn lcm [& ns]
   (let [factors (map factors-of ns)
         factor-counts (map list-as-counts factors)
         common-factor-counts (apply (partial merge-with max) factor-counts)
