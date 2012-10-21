@@ -68,10 +68,10 @@
   (map #(col grid %) (range (count (first grid)))))
 
 (defn diagonal-grid [grid direction]
-  (let [zeros (map repeat (range (count grid)) (repeat 0))]
-    (let [left (if (neg? direction) zeros (reverse zeros))
-          right (reverse left)]
-      (map concat left grid right))))
+  (let [zeros (map repeat (range (count grid)) (repeat 0))
+        left (if (neg? direction) zeros (reverse zeros))
+        right (reverse left)]
+    (map concat left grid right)))
 
 (defn diagonals [grid direction]
   (cols (diagonal-grid grid direction)))
